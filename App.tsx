@@ -29,6 +29,24 @@ import { Service, TeamMember } from './types';
 const WHATSAPP_NUMBER = "5519999592852";
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
 
+// --- Helper para Vídeos ---
+const getEmbedUrl = (url: string) => {
+  if (!url) return null;
+  // YouTube Detection
+  const ytMatch = url.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  if (ytMatch) return `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1&mute=0&loop=1&playlist=${ytMatch[1]}&controls=1&showinfo=0&rel=0&modestbranding=1`;
+  
+  // Vimeo Detection
+  const vimeoMatch = url.match(/(?:https?:\/\/)?(?:www\.)?vimeo\.com\/(\bit\d+|\d+)/);
+  if (vimeoMatch) return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1&muted=0&loop=1`;
+
+  // Instagram Detection
+  const igMatch = url.match(/(?:https?:\/\/)?(?:www\.)?instagram\.com\/(?:reel|p)\/([a-zA-Z0-9_-]+)/);
+  if (igMatch) return `https://www.instagram.com/reel/${igMatch[1]}/embed/`;
+
+  return null;
+};
+
 // --- Dados ---
 
 const SERVICES: Service[] = [
@@ -89,10 +107,34 @@ const MEMBER_DETAILS: Record<string, { aka: string; power: string; item: string;
 };
 
 const PROJECTS = [
-  { id: 1, title: "Campanha Destaque", category: "Audiovisual", video: "https://cdn.coverr.co/videos/coverr-man-walking-in-a-futuristic-tunnel-5134/1080p.mp4", image: "" },
-  { id: 2, title: "Fashion Brand", category: "Filmmaking & Social", video: "https://cdn.coverr.co/videos/coverr-walking-in-a-fashion-show-2728/1080p.mp4", image: "" },
-  { id: 3, title: "Alpha Construtora", category: "Gestão de Tráfego", video: "https://cdn.coverr.co/videos/coverr-modern-office-buildings-5477/1080p.mp4", image: "" },
-  { id: 4, title: "E-Commerce Growth", category: "Estratégia de Vendas", video: "https://cdn.coverr.co/videos/coverr-people-working-in-office-4668/1080p.mp4", image: "" }
+  { 
+    id: 1, 
+    title: "Campanha Destaque", 
+    category: "Audiovisual", 
+    video: "https://www.instagram.com/reel/DSBFRGakmPS/", 
+    image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=800" 
+  },
+  { 
+    id: 2, 
+    title: "Fashion Brand", 
+    category: "Filmmaking & Social", 
+    video: "https://cdn.coverr.co/videos/coverr-walking-in-a-fashion-show-2728/1080p.mp4", 
+    image: "https://images.unsplash.com/photo-1539109132382-361bd57057e9?auto=format&fit=crop&q=80&w=800" 
+  },
+  { 
+    id: 3, 
+    title: "Alpha Construtora", 
+    category: "Gestão de Tráfego", 
+    video: "https://cdn.coverr.co/videos/coverr-modern-office-buildings-5477/1080p.mp4", 
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800" 
+  },
+  { 
+    id: 4, 
+    title: "E-Commerce Growth", 
+    category: "Estratégia de Vendas", 
+    video: "https://cdn.coverr.co/videos/coverr-people-working-in-office-4668/1080p.mp4", 
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" 
+  }
 ];
 
 const ServiceItem: React.FC<{ service: Service, index: number }> = ({ service, index }) => {
@@ -119,6 +161,7 @@ const ServiceItem: React.FC<{ service: Service, index: number }> = ({ service, i
 const App: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+  const [activeProjectId, setActiveProjectId] = useState<number | null>(null);
   const { scrollYProgress } = useScroll();
   
   const heroTextY = useTransform(scrollYProgress, [0, 0.5], [0, 50]);
@@ -264,7 +307,7 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* PORTFÓLIO */}
+      {/* PORTFÓLIO - ATUALIZADO PARA CLICK-TO-PLAY */}
       <section id="trabalhos" className="py-32 px-6 md:px-12 bg-[#080808]">
         <div className="flex flex-col md:flex-row justify-between mb-24">
           <h2 className="text-[7vw] font-heading font-black leading-none uppercase tracking-tighter">
@@ -272,22 +315,74 @@ const App: React.FC = () => {
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 max-w-7xl mx-auto">
-          {PROJECTS.map((project, i) => (
-            <motion.div key={project.id} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className={`group cursor-pointer ${i % 2 !== 0 ? 'md:mt-32' : ''}`}>
-              <div className="overflow-hidden rounded-2xl mb-8 aspect-[4/5] relative bg-gray-900 shadow-2xl">
-                {project.video ? (
-                  <video autoPlay muted loop playsInline className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
-                     <source src={project.video} type="video/mp4" />
-                  </video>
-                ) : (
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
-                )}
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-700" />
-              </div>
-              <h3 className="text-4xl font-heading font-bold uppercase tracking-tight">{project.title}</h3>
-              <p className="text-[#00D2C1] mt-3 uppercase text-xs font-mono font-bold tracking-[0.3em]">{project.category}</p>
-            </motion.div>
-          ))}
+          {PROJECTS.map((project, i) => {
+            const embedUrl = getEmbedUrl(project.video);
+            const isActive = activeProjectId === project.id;
+            
+            return (
+              <motion.div 
+                key={project.id} 
+                initial={{ opacity: 0, y: 50 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true }} 
+                transition={{ delay: i * 0.1 }} 
+                className={`group cursor-pointer ${i % 2 !== 0 ? 'md:mt-32' : ''}`}
+                onClick={() => setActiveProjectId(project.id)}
+              >
+                <div className="overflow-hidden rounded-2xl mb-8 aspect-[4/5] relative bg-gray-900 shadow-2xl">
+                  {/* Overlay de Play (visível quando não ativo) */}
+                  <AnimatePresence>
+                    {!isActive && (
+                      <motion.div 
+                        initial={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="absolute inset-0 z-20 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-colors"
+                      >
+                         <div className="w-20 h-20 rounded-full border-2 border-white/50 flex items-center justify-center backdrop-blur-sm group-hover:scale-110 group-hover:border-[#00D2C1] transition-all duration-500">
+                           <Play className="w-8 h-8 text-white fill-white group-hover:text-[#00D2C1] group-hover:fill-[#00D2C1] transition-colors translate-x-0.5" />
+                         </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Capa do Vídeo (visível quando não ativo) */}
+                  {!isActive && (
+                    <motion.img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 z-10"
+                    />
+                  )}
+
+                  {/* Vídeo / Iframe (Carregado apenas se ativo) */}
+                  {isActive && (
+                    <div className="absolute inset-0 z-30 bg-black">
+                      {embedUrl ? (
+                        <iframe 
+                          src={embedUrl}
+                          className="w-full h-full scale-[1.3]"
+                          frameBorder="0"
+                          allow="autoplay; fullscreen; picture-in-picture"
+                          allowFullScreen
+                        />
+                      ) : (
+                        <video 
+                          autoPlay 
+                          controls 
+                          playsInline 
+                          className="w-full h-full object-cover"
+                        >
+                           <source src={project.video} type="video/mp4" />
+                        </video>
+                      )}
+                    </div>
+                  )}
+                </div>
+                <h3 className="text-4xl font-heading font-bold uppercase tracking-tight">{project.title}</h3>
+                <p className="text-[#00D2C1] mt-3 uppercase text-xs font-mono font-bold tracking-[0.3em]">{project.category}</p>
+              </motion.div>
+            );
+          })}
         </div>
       </section>
 
