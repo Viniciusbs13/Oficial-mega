@@ -18,7 +18,8 @@ import {
   Play,
   Sparkles,
   Briefcase,
-  Quote
+  Quote,
+  Menu
 } from 'lucide-react';
 import FluidBackground from './components/FluidBackground';
 import AIChat from './components/AIChat';
@@ -32,9 +33,10 @@ const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
 // --- Helper para Vídeos ---
 const getEmbedUrl = (url: string) => {
   if (!url) return null;
-  // YouTube Detection
-  const ytMatch = url.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-  if (ytMatch) return `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1&mute=0&loop=1&playlist=${ytMatch[1]}&controls=1&showinfo=0&rel=0&modestbranding=1`;
+  
+  // YouTube Detection (incluindo Shorts)
+  const ytMatch = url.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  if (ytMatch) return `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1&mute=0&loop=1&playlist=${ytMatch[1]}&controls=0&modestbranding=1&rel=0`;
   
   // Vimeo Detection
   const vimeoMatch = url.match(/(?:https?:\/\/)?(?:www\.)?vimeo\.com\/(\bit\d+|\d+)/);
@@ -109,16 +111,16 @@ const MEMBER_DETAILS: Record<string, { aka: string; power: string; item: string;
 const PROJECTS = [
   { 
     id: 1, 
-    title: "Campanha Destaque", 
+    title: "Performance Criativa", 
     category: "Audiovisual", 
-    video: "https://youtube.com/shorts/Ok_daXiL2TQ?si=uoVEpeWbImTUtBs9", 
-    image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=800" 
+    video: "https://youtube.com/shorts/Ok_daXiL2TQ", 
+    image: "https://img.youtube.com/vi/Ok_daXiL2TQ/maxresdefault.jpg" 
   },
   { 
     id: 2, 
     title: "Fashion Brand", 
     category: "Filmmaking & Social", 
-    video: "https://photos.google.com/share/AF1QipO9dML53ptj-lHc662OthuvXVrnpRRV2Mpl5NZRYy8ikHbLIJESU00cSf9XXwpLUg/photo/AF1QipND-t9ktglCNROmDZEnNwe2kN1RXy4vffDWcimy?key=UFdESUFoOTJhb042cDk5NGpBSFdfSUI2SG9XSjVR", 
+    video: "https://cdn.coverr.co/videos/coverr-walking-in-a-fashion-show-2728/1080p.mp4", 
     image: "https://images.unsplash.com/photo-1539109132382-361bd57057e9?auto=format&fit=crop&q=80&w=800" 
   },
   { 
@@ -360,7 +362,7 @@ const App: React.FC = () => {
                       {embedUrl ? (
                         <iframe 
                           src={embedUrl}
-                          className="w-full h-full"
+                          className="w-full h-full pointer-events-auto"
                           frameBorder="0"
                           allow="autoplay; fullscreen; picture-in-picture"
                           allowFullScreen

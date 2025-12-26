@@ -55,17 +55,17 @@ const CustomCursor: React.FC = () => {
         className="font-heading font-bold text-white flex items-center justify-center relative"
         style={{ rotate }}
         animate={{
-          scale: isHovering ? 1.5 : 1,
+          scale: isHovering ? 1.3 : 1,
         }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
       >
-        <span className="text-4xl select-none">Ω</span>
+        <span className="text-3xl select-none">Ω</span>
         
-        {/* Optional glow or ring when hovering */}
+        {/* Glow or ring when hovering */}
         {isHovering && (
           <motion.div 
             layoutId="cursor-ring"
-            className="absolute inset-[-12px] border border-white rounded-full opacity-50"
+            className="absolute inset-[-8px] border border-white rounded-full opacity-50"
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
           />
         )}
