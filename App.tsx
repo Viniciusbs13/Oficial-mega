@@ -604,7 +604,7 @@ const App: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* MENU MODAL */}
+      {/* MENU MODAL - Updated typography size */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/90 backdrop-blur-2xl z-[60] flex items-center justify-center p-4" onClick={() => setMenuOpen(false)}>
@@ -623,7 +623,7 @@ const App: React.FC = () => {
                         if (el) el.scrollIntoView({ behavior: 'smooth' });
                       }
                     }} 
-                    className="text-4xl md:text-7xl font-heading font-black hover:tracking-widest transition-all uppercase tracking-tighter text-left group flex items-center gap-4"
+                    className="text-3xl md:text-5xl font-heading font-black hover:tracking-widest transition-all uppercase tracking-tighter text-left group flex items-center gap-4"
                   >
                     <span>{item}</span>
                     <span className="w-0 h-1 bg-black group-hover:w-16 transition-all duration-500" />
