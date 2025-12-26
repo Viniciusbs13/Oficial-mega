@@ -111,14 +111,14 @@ const PROJECTS = [
     id: 1, 
     title: "Campanha Destaque", 
     category: "Audiovisual", 
-    video: "https://www.instagram.com/reel/DSBFRGakmPS/", 
+    video: "https://youtube.com/shorts/Ok_daXiL2TQ?si=uoVEpeWbImTUtBs9", 
     image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=800" 
   },
   { 
     id: 2, 
     title: "Fashion Brand", 
     category: "Filmmaking & Social", 
-    video: "https://cdn.coverr.co/videos/coverr-walking-in-a-fashion-show-2728/1080p.mp4", 
+    video: "https://photos.google.com/share/AF1QipO9dML53ptj-lHc662OthuvXVrnpRRV2Mpl5NZRYy8ikHbLIJESU00cSf9XXwpLUg/photo/AF1QipND-t9ktglCNROmDZEnNwe2kN1RXy4vffDWcimy?key=UFdESUFoOTJhb042cDk5NGpBSFdfSUI2SG9XSjVR", 
     image: "https://images.unsplash.com/photo-1539109132382-361bd57057e9?auto=format&fit=crop&q=80&w=800" 
   },
   { 
