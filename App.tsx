@@ -196,9 +196,10 @@ const App: React.FC = () => {
       <header id="home" className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 pt-20">
          <motion.div style={{ y: heroTextY, opacity: heroOpacity }} className="z-10 w-full max-w-[95vw] mx-auto">
             <div className="flex flex-col items-start">
-               <div className="flex items-center gap-3 mb-4">
-                  <motion.div initial={{ width: 0 }} animate={{ width: 45 }} className="h-[1.5px] bg-[#00D2C1]" />
-                  <span className="text-xs md:text-sm font-heading font-black uppercase tracking-[0.4em] text-[#00D2C1]">Assessoria Premium</span>
+               {/* Label: Assessoria moved slightly up and Premium removed */}
+               <div className="flex items-center gap-3 mb-1 md:mb-2 -translate-y-5">
+                  <motion.div initial={{ width: 0 }} animate={{ width: 45 }} className="h-[1px] bg-[#00D2C1]" />
+                  <span className="text-[10px] md:text-[11px] font-heading font-black uppercase tracking-[0.6em] text-[#00D2C1]">Assessoria</span>
                </div>
                <h1 className="block text-[14vw] md:text-[12vw] font-heading font-black uppercase tracking-tighter text-white leading-[0.8] -ml-2 select-none relative">
                  ÔMEGA<span className="inline-block w-[2.5vw] h-[2.5vw] bg-[#00D2C1] ml-[0.4vw] -mb-[0.3vw]"></span>
@@ -604,11 +605,11 @@ const App: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* MENU MODAL - Updated typography size */}
+      {/* MENU MODAL - Ultra-minimalist typography size */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/90 backdrop-blur-2xl z-[60] flex items-center justify-center p-4" onClick={() => setMenuOpen(false)}>
-            <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} className="bg-white text-black w-full max-w-2xl rounded-[3rem] p-12 md:p-20 relative" onClick={(e) => e.stopPropagation()}>
+            <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} className="bg-white text-black w-full max-w-xl rounded-[3rem] p-12 md:p-20 relative" onClick={(e) => e.stopPropagation()}>
               <button onClick={() => setMenuOpen(false)} className="absolute top-10 right-10 p-4 rounded-full border border-black/10 hover:bg-black hover:text-white transition-all"><X className="w-6 h-6" /></button>
               <div className="flex flex-col gap-4 mt-8 mb-20">
                 {['TRABALHOS', 'TIME', 'CONSULTORIA', 'CONTATO'].map((item) => (
@@ -623,15 +624,15 @@ const App: React.FC = () => {
                         if (el) el.scrollIntoView({ behavior: 'smooth' });
                       }
                     }} 
-                    className="text-3xl md:text-5xl font-heading font-black hover:tracking-widest transition-all uppercase tracking-tighter text-left group flex items-center gap-4"
+                    className="text-lg md:text-xl font-heading font-bold hover:tracking-[0.2em] transition-all uppercase tracking-[0.3em] text-left group flex items-center gap-4 py-2"
                   >
                     <span>{item}</span>
-                    <span className="w-0 h-1 bg-black group-hover:w-16 transition-all duration-500" />
+                    <span className="w-0 h-0.5 bg-black group-hover:w-8 transition-all duration-500" />
                   </motion.button>
                 ))}
               </div>
-              <a href={WHATSAPP_LINK} target="_blank" className="flex items-center justify-between w-full p-8 bg-black text-white rounded-full font-heading font-black uppercase tracking-widest hover:bg-[#00D2C1] hover:text-black transition-all text-xs">
-                <span>INICIAR PROJETO</span><ArrowRight className="w-6 h-6" />
+              <a href={WHATSAPP_LINK} target="_blank" className="flex items-center justify-between w-full p-7 bg-black text-white rounded-full font-heading font-black uppercase tracking-widest hover:bg-[#00D2C1] hover:text-black transition-all text-[10px]">
+                <span>INICIAR PROJETO</span><ArrowRight className="w-5 h-5" />
               </a>
             </motion.div>
           </motion.div>
