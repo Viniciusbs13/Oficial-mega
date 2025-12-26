@@ -307,7 +307,7 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* PORTFÓLIO - ATUALIZADO PARA CLICK-TO-PLAY */}
+      {/* PORTFÓLIO - FORMATO 1080x1920 (9:16) */}
       <section id="trabalhos" className="py-32 px-6 md:px-12 bg-[#080808]">
         <div className="flex flex-col md:flex-row justify-between mb-24">
           <h2 className="text-[7vw] font-heading font-black leading-none uppercase tracking-tighter">
@@ -329,8 +329,8 @@ const App: React.FC = () => {
                 className={`group cursor-pointer ${i % 2 !== 0 ? 'md:mt-32' : ''}`}
                 onClick={() => setActiveProjectId(project.id)}
               >
-                <div className="overflow-hidden rounded-2xl mb-8 aspect-[4/5] relative bg-gray-900 shadow-2xl">
-                  {/* Overlay de Play (visível quando não ativo) */}
+                <div className="overflow-hidden rounded-2xl mb-8 aspect-[9/16] relative bg-gray-900 shadow-2xl">
+                  {/* Overlay de Play */}
                   <AnimatePresence>
                     {!isActive && (
                       <motion.div 
@@ -345,7 +345,7 @@ const App: React.FC = () => {
                     )}
                   </AnimatePresence>
 
-                  {/* Capa do Vídeo (visível quando não ativo) */}
+                  {/* Capa do Vídeo */}
                   {!isActive && (
                     <motion.img 
                       src={project.image} 
@@ -354,13 +354,13 @@ const App: React.FC = () => {
                     />
                   )}
 
-                  {/* Vídeo / Iframe (Carregado apenas se ativo) */}
+                  {/* Vídeo / Iframe */}
                   {isActive && (
                     <div className="absolute inset-0 z-30 bg-black">
                       {embedUrl ? (
                         <iframe 
                           src={embedUrl}
-                          className="w-full h-full scale-[1.3]"
+                          className="w-full h-full"
                           frameBorder="0"
                           allow="autoplay; fullscreen; picture-in-picture"
                           allowFullScreen
@@ -375,6 +375,16 @@ const App: React.FC = () => {
                            <source src={project.video} type="video/mp4" />
                         </video>
                       )}
+                      {/* Botão para fechar o vídeo e voltar para a capa */}
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveProjectId(null);
+                        }}
+                        className="absolute top-4 right-4 z-40 bg-black/60 p-2 rounded-full hover:bg-red-500 transition-colors"
+                      >
+                        <X className="w-5 h-5 text-white" />
+                      </button>
                     </div>
                   )}
                 </div>
@@ -386,7 +396,7 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* TIME - FORMATO 4:5 PARA MÁXIMO IMPACTO */}
+      {/* TIME */}
       <section id="time" className="py-32 bg-[#050505] border-t border-white/5">
          <div className="max-w-7xl mx-auto px-6 md:px-12">
             <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-10">
@@ -464,7 +474,7 @@ const App: React.FC = () => {
         </div>
       </footer>
 
-      {/* MODAL DO TIME - ULTRA COMPACTO E INTEGRADO */}
+      {/* MODAL DO TIME */}
       <AnimatePresence>
         {selectedMember && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
