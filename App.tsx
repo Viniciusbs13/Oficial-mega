@@ -38,9 +38,9 @@ const getEmbedUrl = (url: string) => {
 // --- Dados ---
 
 const SERVICES: Service[] = [
-  { id: '1', title: 'Tráfego Pago', description: 'Google Ads, Meta Ads & TikTok Ads.', icon: ArrowRight },
+  { id: '1', title: 'Tráfego Pago', description: 'Google Ads, Meta Ads & CRM.', icon: ArrowRight },
   { id: '2', title: 'Social Media', description: 'Direção de arte & Estratégia de conteúdo.', icon: ArrowRight },
-  { id: '3', title: 'Filmmaking', description: 'Produção audiovisual cinematográfica.', icon: ArrowRight },
+  { id: '3', title: 'Filmmaking', description: 'Produção audiovisual cinematográfica & Drones.', icon: ArrowRight },
   { id: '4', title: 'Branding', description: 'Posicionamento & Identidade Visual.', icon: ArrowRight },
   { id: '5', title: 'Consultoria Comercial', description: 'Profissionalização de times & Processos de vendas.', icon: ArrowRight }
 ];
@@ -49,14 +49,14 @@ const TEAM: TeamMember[] = [
   {
     id: '1',
     name: 'Vinicius',
-    role: 'CEO',
+    role: 'CEO & FOUNDER',
     description: 'Domínio total em escala de faturamento e ROI estrategicamente focado em resultados.',
     image: 'https://lh3.googleusercontent.com/pw/AP1GczPSsz7UTZA4P6hYo4gjLZsY2fLqSm0U54x92eNwEKEf13FcP5uB71F47N0lTJy1b1kaKzzYgYShdQAEpqEONsB03Zk7gNR7xDYr9xZHdT5bT00w8sdULfTAMhDALcxoO-D91q9L2msuH3tjmq45Up0=w482-h765-s-no-gm?authuser=0'
   },
   {
     id: '2',
     name: 'Mateus',
-    role: 'COO',
+    role: 'COO & FOUNDER',
     description: 'Excelência técnica em produções cinematográficas de alto impacto visual.',
     image: 'https://lh3.googleusercontent.com/pw/AP1GczO-L8qYIff8oU0VXI5rPsIuZ2cy_WTdOaqOzgJmXuyPAYw7cfCSnMtnJMeZh3tNeoYjbEQzpqUuhbcLegx5DtzGBAnX6WeGmrVf0ONzTGqndJ0Cj-SrrR3N1J7c21-KL6QtGRs0N6Bd8WpbnflLMT6_Qg=w697-h731-s-no-gm?authuser=0'
   },
@@ -82,9 +82,9 @@ const MEMBER_DETAILS: Record<string, { aka: string; specialism: string }> = {
 
 const PROJECTS = [
   { id: 1, title: "Social Performance", category: "Audiovisual", video: "https://youtube.com/shorts/Ok_daXiL2TQ", image: "https://img.youtube.com/vi/Ok_daXiL2TQ/maxresdefault.jpg" },
-  { id: 5, title: "Estratégia Viral", category: "Social Media", video: "https://youtube.com/shorts/0rJo08oq1Jw", image: "https://img.youtube.com/vi/0rJo08oq1Jw/maxresdefault.jpg" },
-  { id: 2, title: "Fashion Content", category: "Branding", video: "https://youtube.com/shorts/jmu-psaVNko", image: "https://img.youtube.com/vi/jmu-psaVNko/maxresdefault.jpg" },
-  { id: 3, title: "Growth Corporate", category: "Gestão de Tráfego", video: "https://youtube.com/shorts/Sz9Mix58h2I", image: "https://img.youtube.com/vi/Sz9Mix58h2I/maxresdefault.jpg" }
+  { id: 5, title: "Estratégia Viral", category: "Conteudo impactante", video: "https://youtube.com/shorts/0rJo08oq1Jw", image: "https://img.youtube.com/vi/0rJo08oq1Jw/maxresdefault.jpg" },
+  { id: 2, title: "Cobertura de evento", category: "Energia solar", video: "https://youtube.com/shorts/jmu-psaVNko", image: "https://img.youtube.com/vi/jmu-psaVNko/maxresdefault.jpg" },
+  { id: 3, title: "Social Media", category: "Conteudos que geram desejos", video: "https://youtube.com/shorts/Sz9Mix58h2I", image: "https://img.youtube.com/vi/Sz9Mix58h2I/maxresdefault.jpg" }
 ];
 
 const App: React.FC = () => {
@@ -339,7 +339,7 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto">
            <div className="flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-20">
               <div className="w-full lg:w-[55%]">
-                <h2 className="text-[8vw] lg:text-[7vw] font-heading font-black uppercase tracking-tighter leading-[0.85] mb-8">
+                <h2 className="text-4xl md:text-5xl lg:text-[4vw] font-heading font-black uppercase tracking-tighter leading-[0.85] mb-8">
                   PRONTO <br/> PARA <br/> <span className="text-[#00D2C1]">ESCALAR?</span>
                 </h2>
                 <a href="mailto:assessoriaomega1@gmail.com" className="text-xl md:text-2xl font-bold hover:text-[#00D2C1] transition-colors border-b-2 border-transparent hover:border-[#00D2C1] pb-1">
