@@ -36,12 +36,11 @@ const getEmbedUrl = (url: string) => {
   
   // YouTube Detection (incluindo Shorts)
   const ytMatch = url.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-  if (ytMatch) return `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1&mute=0&loop=1&playlist=${ytMatch[1]}&controls=0&modestbranding=1&rel=0`;
+  if (ytMatch) {
+    // Usamos mute=1 e autoplay=1 para garantir que o navegador permita o início automático
+    return `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1&mute=1&loop=1&playlist=${ytMatch[1]}&controls=1&modestbranding=1&rel=0&showinfo=0`;
+  }
   
-  // Vimeo Detection
-  const vimeoMatch = url.match(/(?:https?:\/\/)?(?:www\.)?vimeo\.com\/(\bit\d+|\d+)/);
-  if (vimeoMatch) return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1&muted=0&loop=1`;
-
   // Instagram Detection
   const igMatch = url.match(/(?:https?:\/\/)?(?:www\.)?instagram\.com\/(?:reel|p)\/([a-zA-Z0-9_-]+)/);
   if (igMatch) return `https://www.instagram.com/reel/${igMatch[1]}/embed/`;
@@ -98,7 +97,7 @@ const TEAM: TeamMember[] = [
     name: 'Gustavo',
     role: 'CCO',
     description: 'Novos Negócios & Estratégia',
-    image: 'https://lh3.googleusercontent.com/pw/AP1GczOFmonk3G_fBkOh2F7DZMSkywOqocKZzbLIA0EhSR64K83olJryrnoTMxH_uWhSGney9wNcbj2VyDNMpl1LNnYkHpMatVtTD2UcpK86qK06KFH3vdu7aMUR-PhQLNpPrQPp9HWWqKablYv5G4qKqma8dA=w640-h641-s-no-gm?authuser=0'
+    image: 'https://lh3.googleusercontent.com/pw/AP1GczOFmonk3G_fBkOh2F7DZMSkywOqocKZzbLIA0EhSR64K83olJryrnoTMxH_uWhSGney9wNcbj2VyDNMpl1LNnYkHpMatVtTD2UcpK86 donor qma8dA=w640-h641-s-no-gm?authuser=0'
   }
 ];
 
@@ -111,7 +110,7 @@ const MEMBER_DETAILS: Record<string, { aka: string; power: string; item: string;
 const PROJECTS = [
   { 
     id: 1, 
-    title: "Performance Criativa", 
+    title: "Social Performance", 
     category: "Audiovisual", 
     video: "https://youtube.com/shorts/Ok_daXiL2TQ", 
     image: "https://img.youtube.com/vi/Ok_daXiL2TQ/maxresdefault.jpg" 
@@ -125,24 +124,17 @@ const PROJECTS = [
   },
   { 
     id: 2, 
-    title: "Fashion Brand", 
-    category: "Filmmaking & Social", 
-    video: "https://cdn.coverr.co/videos/coverr-walking-in-a-fashion-show-2728/1080p.mp4", 
-    image: "https://images.unsplash.com/photo-1539109132382-361bd57057e9?auto=format&fit=crop&q=80&w=800" 
+    title: "Fashion Content", 
+    category: "Branding", 
+    video: "https://youtube.com/shorts/jmu-psaVNko", 
+    image: "https://img.youtube.com/vi/jmu-psaVNko/maxresdefault.jpg" 
   },
   { 
     id: 3, 
-    title: "Alpha Construtora", 
+    title: "Growth Corporate", 
     category: "Gestão de Tráfego", 
-    video: "https://cdn.coverr.co/videos/coverr-modern-office-buildings-5477/1080p.mp4", 
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800" 
-  },
-  { 
-    id: 4, 
-    title: "E-Commerce Growth", 
-    category: "Estratégia de Vendas", 
-    video: "https://cdn.coverr.co/videos/coverr-people-working-in-office-4668/1080p.mp4", 
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" 
+    video: "https://youtube.com/shorts/Sz9Mix58h2I", 
+    image: "https://img.youtube.com/vi/Sz9Mix58h2I/maxresdefault.jpg" 
   }
 ];
 
@@ -243,7 +235,7 @@ const App: React.FC = () => {
           >
             <motion.div 
               initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-white text-black w-full max-w-md rounded-[2.5rem] p-10 relative shadow-2xl"
+              className="bg-white text-black w-full max-md rounded-[2.5rem] p-10 relative shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <button onClick={() => setMenuOpen(false)} className="absolute top-8 right-8 p-3 rounded-full border border-black/10 hover:bg-black hover:text-white transition-colors">
@@ -316,7 +308,7 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* PORTFÓLIO - FORMATO 1080x1920 (9:16) */}
+      {/* PORTFÓLIO */}
       <section id="trabalhos" className="py-32 px-6 md:px-12 bg-[#080808]">
         <div className="flex flex-col md:flex-row justify-between mb-24">
           <h2 className="text-[7vw] font-heading font-black leading-none uppercase tracking-tighter">
@@ -339,7 +331,6 @@ const App: React.FC = () => {
                 onClick={() => setActiveProjectId(project.id)}
               >
                 <div className="overflow-hidden rounded-2xl mb-8 aspect-[9/16] relative bg-gray-900 shadow-2xl">
-                  {/* Overlay de Play */}
                   <AnimatePresence>
                     {!isActive && (
                       <motion.div 
@@ -354,7 +345,6 @@ const App: React.FC = () => {
                     )}
                   </AnimatePresence>
 
-                  {/* Capa do Vídeo */}
                   {!isActive && (
                     <motion.img 
                       src={project.image} 
@@ -363,7 +353,6 @@ const App: React.FC = () => {
                     />
                   )}
 
-                  {/* Vídeo / Iframe */}
                   {isActive && (
                     <div className="absolute inset-0 z-30 bg-black">
                       {embedUrl ? (
@@ -384,7 +373,6 @@ const App: React.FC = () => {
                            <source src={project.video} type="video/mp4" />
                         </video>
                       )}
-                      {/* Botão para fechar o vídeo e voltar para a capa */}
                       <button 
                         onClick={(e) => {
                           e.stopPropagation();
@@ -439,12 +427,6 @@ const App: React.FC = () => {
                     <p className="text-gray-400 mt-3 text-sm font-medium leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
                       {member.description}
                     </p>
-                  </div>
-
-                  <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transition-all translate-x-4 group-hover:translate-x-0">
-                      <div className="w-12 h-12 rounded-full bg-[#00D2C1] flex items-center justify-center text-black">
-                          <ArrowUpRight className="w-6 h-6" />
-                      </div>
                   </div>
                 </motion.div>
               ))}
@@ -504,7 +486,6 @@ const App: React.FC = () => {
                         className="w-full h-full object-cover object-top"
                         alt={selectedMember.name}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent md:hidden" />
                 </div>
 
                 <div className="md:w-[55%] p-8 md:p-10 flex flex-col justify-center bg-[#080808]">
@@ -528,15 +509,6 @@ const App: React.FC = () => {
                             <div>
                                <span className="block text-[7px] text-gray-600 font-mono uppercase tracking-widest mb-0.5">Especialidade</span>
                                <span className="text-white text-sm font-bold uppercase tracking-tight leading-tight">{MEMBER_DETAILS[selectedMember.id]?.power || selectedMember.description}</span>
-                            </div>
-                        </div>
-                        <div className="flex items-start gap-3">
-                            <div className="p-2 bg-white/5 rounded-lg text-white/30">
-                               <Sparkles className="w-4 h-4" />
-                            </div>
-                            <div>
-                               <span className="block text-[7px] text-gray-600 font-mono uppercase tracking-widest mb-0.5">Foco Principal</span>
-                               <span className="text-white text-sm font-bold uppercase tracking-tight leading-tight">{MEMBER_DETAILS[selectedMember.id]?.item || "Data Analysis"}</span>
                             </div>
                         </div>
                     </div>
