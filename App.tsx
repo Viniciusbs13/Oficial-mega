@@ -117,6 +117,13 @@ const PROJECTS = [
     image: "https://img.youtube.com/vi/Ok_daXiL2TQ/maxresdefault.jpg" 
   },
   { 
+    id: 5, 
+    title: "Estratégia Viral", 
+    category: "Social Media", 
+    video: "https://youtube.com/shorts/0rJo08oq1Jw", 
+    image: "https://img.youtube.com/vi/0rJo08oq1Jw/maxresdefault.jpg" 
+  },
+  { 
     id: 2, 
     title: "Fashion Brand", 
     category: "Filmmaking & Social", 
