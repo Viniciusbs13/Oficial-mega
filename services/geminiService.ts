@@ -6,17 +6,18 @@
 
 import { GoogleGenAI, Chat, GenerateContentResponse } from "@google/genai";
 
-const API_KEY = process.env.API_KEY || '';
-
 let chatSession: Chat | null = null;
 
+// Initialize chat session using strictly defined environment API key and recommended model
 export const initializeChat = (): Chat => {
   if (chatSession) return chatSession;
 
-  const ai = new GoogleGenAI({ apiKey: API_KEY });
+  // Use process.env.API_KEY directly as required
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   
   chatSession = ai.chats.create({
-    model: 'gemini-2.5-flash',
+    // Updated to gemini-3-flash-preview for general text and simple Q&A tasks
+    model: 'gemini-3-flash-preview',
     config: {
       systemInstruction: `Você é a ÔMEGA IA, a consultora virtual da Assessoria Ômega.
 
@@ -38,13 +39,11 @@ export const initializeChat = (): Chat => {
   return chatSession;
 };
 
+// Send message to Gemini using the correctly initialized chat instance
 export const sendMessageToGemini = async (message: string): Promise<string> => {
-  if (!API_KEY) {
-    return "Sistema offline. (API Key ausente)";
-  }
-
   try {
     const chat = initializeChat();
+    // sendMessage handles the prompt via the message parameter
     const response: GenerateContentResponse = await chat.sendMessage({ message });
     return response.text || "Interrupção no sinal.";
   } catch (error) {
