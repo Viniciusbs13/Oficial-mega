@@ -58,23 +58,24 @@ const FluidBackground: React.FC = () => {
         className="absolute top-[-10%] left-[-10%] w-[120vw] h-[120vw] bg-[#00D2C1]/5 rounded-full blur-[180px]"
       />
 
-      {/* Camada 3: Estrelas (Parallax Inverso) */}
-      {/* Fix: Merged duplicate style attributes into a single object */}
+      {/* Camada 3: Estrelas (Parallax Inverso - Brilho Aumentado) */}
       <motion.div 
         style={{ 
           x: starsX, 
           y: starsY,
           backgroundImage: `
-            radial-gradient(1.5px 1.5px at 15% 15%, #fff, rgba(0,0,0,0)), 
-            radial-gradient(1px 1px at 40% 30%, #fff, rgba(0,0,0,0)), 
-            radial-gradient(2px 2px at 70% 20%, #00D2C1, rgba(0,0,0,0)), 
-            radial-gradient(1px 1px at 85% 60%, #fff, rgba(0,0,0,0)), 
-            radial-gradient(1.5px 1.5px at 25% 85%, #fff, rgba(0,0,0,0)), 
-            radial-gradient(1px 1px at 55% 75%, #fff, rgba(0,0,0,0))
+            radial-gradient(1.8px 1.8px at 15% 15%, #fff, rgba(255,255,255,0)), 
+            radial-gradient(1.2px 1.2px at 40% 30%, #fff, rgba(255,255,255,0)), 
+            radial-gradient(2.5px 2.5px at 70% 20%, #00D2C1, rgba(0,210,193,0)), 
+            radial-gradient(1.2px 1.2px at 85% 60%, #fff, rgba(255,255,255,0)), 
+            radial-gradient(2px 2px at 25% 85%, #fff, rgba(255,255,255,0)), 
+            radial-gradient(1.2px 1.2px at 55% 75%, #fff, rgba(255,255,255,0)),
+            radial-gradient(1.5px 1.5px at 10% 80%, #00D2C1, rgba(0,210,193,0)),
+            radial-gradient(1px 1px at 90% 10%, #fff, rgba(255,255,255,0))
           `,
-          backgroundSize: '450px 450px',
+          backgroundSize: '400px 400px',
         }} 
-        className="absolute inset-[-10%] opacity-30" 
+        className="absolute inset-[-10%] opacity-60" 
       />
 
       {/* Camada 4: Grão Cinematográfico (Estático para Textura) */}

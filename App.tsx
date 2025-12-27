@@ -567,7 +567,8 @@ const App: React.FC = () => {
                       <h2 className="text-3xl md:text-7xl font-heading font-black uppercase mb-8 md:mb-16 text-[#00D2C1]">FILTRO FINAL</h2>
                       <div className="grid gap-6 md:gap-10">
                         <textarea placeholder="Por que sua empresa merece crescer agora?" required className="bg-transparent border border-white/10 p-4 md:p-8 rounded-2xl min-h-[100px] md:min-h-[160px] text-sm md:text-xl" value={consultancyData.porqueCrescer} onChange={e => setConsultancyData({...consultancyData, porqueCrescer: e.target.value})} />
-                        <input type="text" placeholder="Existe urgência? Por quê?" required className="bg-transparent border-b border-white/10 py-3 md:py-6 outline-none text-base md:text-2xl" value={consultancyData.urgencia} onChange={e => setConsultancyData({...consultancyData, box: e.target.value})} />
+                        {/* Fixed line 570: changed 'box' to 'urgencia' to match state property */}
+                        <input type="text" placeholder="Existe urgência? Por quê?" required className="bg-transparent border-b border-white/10 py-3 md:py-6 outline-none text-base md:text-2xl" value={consultancyData.urgencia} onChange={e => setConsultancyData({...consultancyData, urgencia: e.target.value})} />
                         <div className="flex flex-col gap-3">
                            <span className="text-xs md:text-xl uppercase font-bold text-gray-500">Aberto a consultoria estratégica?</span>
                            <div className="flex gap-4 md:gap-8">
