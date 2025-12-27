@@ -81,7 +81,7 @@ const MEMBER_DETAILS: Record<string, { aka: string; specialism: string }> = {
 };
 
 const PROJECTS = [
-  { id: 1, title: "Social Performance", category: "Audiovisual", video: "https://youtube.com/shorts/Ok_daXiL2TQ", image: "https://img.youtube.com/vi/Ok_daXiL2TQ/maxresdefault.jpg" },
+  { id: 1, title: "Social Performance", category: "Audiovisual", video: "https://youtube.com/shorts/6UqZKnCIu40?feature=share", image: "https://img.youtube.com/vi/6UqZKnCIu40/maxresdefault.jpg" },
   { id: 5, title: "Estratégia Viral", category: "Conteudo impactante", video: "https://youtube.com/shorts/0rJo08oq1Jw", image: "https://img.youtube.com/vi/0rJo08oq1Jw/maxresdefault.jpg" },
   { id: 2, title: "Cobertura de evento", category: "Energia solar", video: "https://youtube.com/shorts/jmu-psaVNko", image: "https://img.youtube.com/vi/jmu-psaVNko/maxresdefault.jpg" },
   { id: 3, title: "Social Media", category: "Conteudos que geram desejos", video: "https://youtube.com/shorts/Sz9Mix58h2I", image: "https://img.youtube.com/vi/Sz9Mix58h2I/maxresdefault.jpg" }
