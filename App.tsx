@@ -16,7 +16,6 @@ import {
 } from 'lucide-react';
 import FluidBackground from './components/FluidBackground';
 import AIChat from './components/AIChat';
-import CustomCursor from './components/CustomCursor';
 import { Service, TeamMember } from './types';
 
 // --- Config ---
@@ -165,15 +164,14 @@ const App: React.FC = () => {
   }, [selectedMember, menuOpen, consultancyOpen]);
 
   return (
-    <div className="relative min-h-screen bg-transparent text-white overflow-x-hidden selection:bg-[#00D2C1] selection:text-black cursor-none">
-      <CustomCursor />
+    <div className="relative min-h-screen bg-transparent text-white overflow-x-hidden selection:bg-[#00D2C1] selection:text-black">
       <FluidBackground />
       <AIChat />
 
       {/* NAV */}
       <nav className="fixed top-0 left-0 right-0 p-4 md:px-12 md:py-8 flex justify-between items-center z-50">
         <div className="flex items-center gap-4 md:gap-6">
-           <div className="font-heading text-lg md:text-2xl font-bold tracking-tighter border-[2px] md:border-[3px] border-white px-3 md:px-4 py-1.5 md:py-2">
+           <div className="font-heading text-lg md:text-2xl font-bold tracking-tighter border-[2px] md:border-[3px] border-white px-3 md:px-4 py-1.5 md:py-2 bg-black/40 backdrop-blur-md">
              ÔMEGA<span className="text-[#00D2C1]">.</span>
            </div>
            <span className="hidden md:block font-mono text-[10px] uppercase tracking-[0.4em] text-white/50 mt-1">EST. 2024 : BRASIL</span>
@@ -209,8 +207,8 @@ const App: React.FC = () => {
          </motion.div>
          <div className="absolute bottom-10 md:bottom-20 left-6 right-6 md:left-12 md:right-12 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-20 items-end">
             <div className="flex gap-4 md:gap-14 opacity-70">
-               <div className="flex items-center gap-2 md:gap-4"><div className="w-2 h-2 md:w-4 md:h-4 bg-[#00D2C1] rounded-full"></div><span className="font-mono text-[8px] md:text-lg font-black tracking-widest uppercase">Expertise Google</span></div>
-               <div className="flex items-center gap-2 md:gap-4"><div className="w-2 h-2 md:w-4 md:h-4 bg-[#00D2C1] rounded-full"></div><span className="font-mono text-[8px] md:text-lg font-black tracking-widest uppercase">Estratégia Meta</span></div>
+               <div className="flex items-center gap-2 md:gap-4"><div className="w-2 h-2 md:w-4 md:h-4 bg-[#00D2C1] rounded-full shadow-[0_0_8px_#00D2C1]"></div><span className="font-mono text-[8px] md:text-lg font-black tracking-widest uppercase">Expertise Google</span></div>
+               <div className="flex items-center gap-2 md:gap-4"><div className="w-2 h-2 md:w-4 md:h-4 bg-[#00D2C1] rounded-full shadow-[0_0_8px_#00D2C1]"></div><span className="font-mono text-[8px] md:text-lg font-black tracking-widest uppercase">Estratégia Meta</span></div>
             </div>
             <div className="flex justify-start md:justify-end"><p className="text-base md:text-3xl text-gray-400 leading-snug max-w-[280px] md:max-w-xl text-left md:text-right font-medium">Arquitetura de performance para marcas que <br className="hidden md:block" /><span className="text-white font-bold border-b-2 border-[#00D2C1] pb-1">dominam seu nicho</span>.</p></div>
          </div>
@@ -569,7 +567,7 @@ const App: React.FC = () => {
                       <h2 className="text-3xl md:text-7xl font-heading font-black uppercase mb-8 md:mb-16 text-[#00D2C1]">FILTRO FINAL</h2>
                       <div className="grid gap-6 md:gap-10">
                         <textarea placeholder="Por que sua empresa merece crescer agora?" required className="bg-transparent border border-white/10 p-4 md:p-8 rounded-2xl min-h-[100px] md:min-h-[160px] text-sm md:text-xl" value={consultancyData.porqueCrescer} onChange={e => setConsultancyData({...consultancyData, porqueCrescer: e.target.value})} />
-                        <input type="text" placeholder="Existe urgência? Por quê?" required className="bg-transparent border-b border-white/10 py-3 md:py-6 outline-none text-base md:text-2xl" value={consultancyData.urgencia} onChange={e => setConsultancyData({...consultancyData, urgencia: e.target.value})} />
+                        <input type="text" placeholder="Existe urgência? Por quê?" required className="bg-transparent border-b border-white/10 py-3 md:py-6 outline-none text-base md:text-2xl" value={consultancyData.urgencia} onChange={e => setConsultancyData({...consultancyData, box: e.target.value})} />
                         <div className="flex flex-col gap-3">
                            <span className="text-xs md:text-xl uppercase font-bold text-gray-500">Aberto a consultoria estratégica?</span>
                            <div className="flex gap-4 md:gap-8">
@@ -608,7 +606,7 @@ const App: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* MENU MODAL - Refined spacing for mobile */}
+      {/* MENU MODAL */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/90 backdrop-blur-2xl z-[60] flex items-center justify-center p-4" onClick={() => setMenuOpen(false)}>
